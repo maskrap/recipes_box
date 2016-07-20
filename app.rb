@@ -58,3 +58,14 @@ post('/recipes/:id/tag/new') do
   @recipe.tags.push(tag)
   redirect("/recipes/#{@recipe.id()}")
 end
+
+delete("/recipes/:id") do
+  @recipe = Recipe.find(params.fetch('id').to_i())
+  @recipe.delete()
+  @recipes = Recipe.all()
+  @tags = Tag.all()
+  @tags.each() do |tag|
+    tag.recipes.destroy(@recipe)
+  end
+  redirect('/recipes')
+end
