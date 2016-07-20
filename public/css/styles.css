@@ -1,0 +1,27 @@
+body {
+  background-image: url("../img/kitchen.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+div {
+  text-align: right;
+}
+
+h1, h3 {
+  font-family:Georgia,serif;
+	color:#4E443C;
+	font-variant: small-caps; text-transform: none; font-weight: 100; margin-bottom: 0;
+}
+
+label, a, button {
+  font-family:Georgia,serif;
+	font-size: .8em;
+  font-weight: bold;
+	text-transform:uppercase;
+	letter-spacing:2px;
+}
+
+li {
+  list-style: none;
+}
