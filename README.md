@@ -29,11 +29,19 @@ See spec folder
 ## Setup/Installation Requirements
 
 #### Option #1
+#### Setup instructions
 * Clone this repository
-* Open using Sinatra
+* Navigate into file
+* Connect to postgres
+* Enter commands:
+  * rake db:create
+  * rake db:migrate
+* Open in Sinatra
+* Navigate to localhost:4567
+
 
 #### Option #2
-* Click on given link: X
+* Click on heroku link: https://sleepy-falls-63353.herokuapp.com/
 
 ## Known Bugs
 * None
