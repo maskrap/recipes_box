@@ -1,0 +1,39 @@
+<h1><%= @recipe.name() %></h1>
+
+<h3>Ingredients:</h3>
+<%= @recipe.ingredients() %>
+
+<h3>Instructions:</h3>
+<%= @recipe.instructions() %>
+
+<h3>Tags:</h3>
+<% if @recipe.tags().any?() %>
+<ul>
+<% @recipe.tags().each() do |tag| %>
+<li><%= tag.category() %></li>
+<% end %>
+</ul>
+<% end %>
+
+
+<h3>Tag You're it</h3>
+<% if @tags.any?() %>
+  <form action="/recipes/<%= @recipe.id() %>/tag" method="post">
+    <input id="recipe_id" name="recipe_id" type="hidden" value="<%= @recipe.id() %>">
+    <label for="tag_id">Select a Tag</label>
+      <select id='tag_id' name='tag_id' type='text'>
+        <% @tags.each() do |tag| %>
+          <option value="<%= tag.id()%>"> <%= tag.category() %></option>
+        <% end %>
+      </select>
+    <button type="submit">Add Tag</button>
+  </form>
+<% end %>
+
+<form action="/recipes/<%= @recipe.id() %>/tag/new" method="post">
+  <label for="category">Tag category</label>
+  <input id="category" name="category" type="text">
+  <button type="submit">Add Tag</button>
+</form>
+
+<a href="/">Return Home</a>
