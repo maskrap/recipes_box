@@ -10,7 +10,7 @@
 <% if @recipe.tags().any?() %>
 <ul>
 <% @recipe.tags().each() do |tag| %>
-<li><%= tag.category() %></li>
+<li><a href="/tags/<%= tag.id() %>"><%= tag.category() %></a></li>
 <% end %>
 </ul>
 <% end %>

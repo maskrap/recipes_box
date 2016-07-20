@@ -36,6 +36,12 @@ get('/recipes/:id') do
   erb(:recipe)
 end
 
+get('/tags/:id') do
+  @tag = Tag.find(params.fetch("id").to_i())
+  @recipes = Recipe.all()
+  erb(:tag)
+end
+
 post('/recipes/:id/tag') do
   recipe_id = params.fetch("recipe_id").to_i()
   tag_id = params.fetch("tag_id").to_i()

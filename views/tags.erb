@@ -1,11 +1,10 @@
 <h1>Tags</h1>
 
 <% if @tags.any?() %>
-  <% @tags.each() do |tag| %>
   <ul>
-    <li><a href="/tags/<%= tag.id() %>"> <%= tag.category() %> </a>
-    </li>
-  <% end %>
+    <% @tags.each() do |tag| %>
+      <li><a href="/tags/<%= tag.id() %>"><%= tag.category() %></a></li>
+    <% end %>
   </ul>
 <% else %>
   <p>We have no tags :(<p>
