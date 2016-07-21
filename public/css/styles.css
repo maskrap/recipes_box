@@ -25,3 +25,7 @@ label, a, button {
 li {
   list-style: none;
 }
+
+.tags li {
+  display: inline;
+}

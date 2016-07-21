@@ -1,26 +1,8 @@
 <h1><%= @recipe.name() %></h1>
 
-<h3>Rate this recipe:</h3>
-<form action="/recipes/<%= @recipe.id() %>/rate" method="post">
-  <div class="radio">
-    <label><input type="radio" name="rating" value=1>1</label>
-  </div>
-  <div class="radio">
-    <label><input type="radio" name="rating" value=2>2</label>
-  </div>
-  <div class="radio">
-    <label><input type="radio" name="rating" value=3>3</label>
-  </div>
-  <div class="radio">
-    <label><input type="radio" name="rating" value=4>4</label>
-  </div>
-  <div class="radio">
-    <label><input type="radio" name="rating" value=5>5</label>
-  </div>
-  <button type="submit">Submit rating</button>
-</form>
-
-<%= @recipe.rating() %>
+<% if @recipe.rating() != nil %>
+<h3>Rating: <%= @recipe.rating() %></h3>
+<% end %>
 
 <h3>Ingredients:</h3>
 <ul>
@@ -32,14 +14,16 @@
 <h3>Instructions:</h3>
 <%= @recipe.instructions() %>
 
-<h3>Tags:</h3>
-<% if @recipe.tags().any?() %>
-  <ul>
-    <% @recipe.tags().each() do |tag| %>
-      <li><a href="/tags/<%= tag.id() %>"><%= tag.category() %></a></li>
-    <% end %>
-  </ul>
-<% end %>
+<div class="tags">
+  <h3>Tags:</h3>
+  <% if @recipe.tags().any?() %>
+    <ul>
+      <% @recipe.tags().each() do |tag| %>
+        <li><a href="/tags/<%= tag.id() %>"><%= tag.category() %></a></li>
+      <% end %>
+    </ul>
+  <% end %>
+</div>
 
 <h3>Add Tags</h3>
 <% if @tags.any?() %>
@@ -59,6 +43,27 @@
   <label for="category">Tag category</label>
   <input id="category" name="category" type="text">
   <button type="submit">Add Tag</button>
+</form>
+
+<h3>Rate this recipe:</h3>
+<form action="/recipes/<%= @recipe.id() %>/rate" method="post">
+  <div class="radio-inline">
+    <label><input type="radio" name="rating" value=1>1</label>
+  </div>
+  <div class="radio-inline">
+    <label><input type="radio" name="rating" value=2>2</label>
+  </div>
+  <div class="radio-inline">
+    <label><input type="radio" name="rating" value=3>3</label>
+  </div>
+  <div class="radio-inline">
+    <label><input type="radio" name="rating" value=4>4</label>
+  </div>
+  <div class="radio-inline">
+    <label><input type="radio" name="rating" value=5>5</label>
+  </div>
+  <br>
+  <button type="submit">Submit</button>
 </form>
 
 <h3>Update <%=@recipe.name() %> </h3>
