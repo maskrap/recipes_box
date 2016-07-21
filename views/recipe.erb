@@ -1,5 +1,27 @@
 <h1><%= @recipe.name() %></h1>
 
+<h3>Rate this recipe:</h3>
+<form action="/recipes/<%= @recipe.id() %>/rate" method="post">
+  <div class="radio">
+    <label><input type="radio" name="rating" value=1>1</label>
+  </div>
+  <div class="radio">
+    <label><input type="radio" name="rating" value=2>2</label>
+  </div>
+  <div class="radio">
+    <label><input type="radio" name="rating" value=3>3</label>
+  </div>
+  <div class="radio">
+    <label><input type="radio" name="rating" value=4>4</label>
+  </div>
+  <div class="radio">
+    <label><input type="radio" name="rating" value=5>5</label>
+  </div>
+  <button type="submit">Submit rating</button>
+</form>
+
+<%= @recipe.rating() %>
+
 <h3>Ingredients:</h3>
 <ul>
   <% @recipe.ingredients().split(", ").each() do |ingredient| %>

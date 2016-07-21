@@ -1,4 +1,5 @@
 require("bundler/setup")
+require("pry")
 Bundler.require(:default)
 Dir[File.dirname(__FILE__) + '/lib/*.rb'].each { |file| require file }
 
@@ -95,4 +96,17 @@ patch('/tags/:id') do
   @tag.update({:category => category})
   @recipes = Recipe.all()
   erb(:tag)
+end
+
+post('/recipes/:id/rate') do
+  @recipe = Recipe.find(params.fetch("id").to_i())
+  rating = params.fetch("rating").to_i()
+  @recipe.update({:rating => rating})
+  @tags = Tag.all()
+  redirect("/recipes/#{@recipe.id()}")
+end
+
+get('/ratings') do
+  @recipes = Recipe.all()
+  erb(:ratings)
 end
