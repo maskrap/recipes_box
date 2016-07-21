@@ -120,3 +120,34 @@ get('/ratings') do
   @recipes = Recipe.all()
   erb(:ratings)
 end
+
+get('/ingredients') do
+  @ingredients = Ingredient.all()
+  erb(:ingredients)
+end
+
+get('/ingredients/:id') do
+  @ingredients = Ingredient.all()
+  @ingredient = Ingredient.find(params.fetch("id").to_i())
+  @recipes = Recipe.all()
+  erb(:ingredient)
+end
+
+delete("/ingredients/:id") do
+  @ingredient = Ingredient.find(params.fetch('id').to_i())
+  @ingredient.delete()
+  @ingredients = Ingredient.all()
+  @recipes = Recipe.all()
+  @recipes.each() do |recipe|
+    recipe.ingredients.destroy(@ingredient)
+  end
+  redirect('/ingredients')
+end
+
+patch('/ingredients/:id') do
+  @ingredient = Ingredient.find(params.fetch("id").to_i())
+  name = params.fetch('new_name')
+  @ingredient.update({:name => name})
+  @recipes = Recipe.all()
+  erb(:ingredient)
+end
