@@ -1,83 +1,86 @@
-<h1><%= @recipe.name() %></h1>
+<div class="main">
+  <h1><%= @recipe.name() %></h1>
 
-<% if @recipe.rating() != nil %>
-<h3>Rating: <%= @recipe.rating() %></h3>
-<% end %>
-
-<h3>Ingredients:</h3>
-<ul>
-  <% @recipe.ingredients().each() do |ingredient| %>
-    <li><%= ingredient.name() %></li>
+  <% if @recipe.rating() != nil %>
+  <h3>Rating: <%= @recipe.rating() %></h3>
   <% end %>
-</ul>
 
-<h3>Instructions:</h3>
-<%= @recipe.instructions() %>
+  <h3>Ingredients:</h3>
+  <ul>
+    <% @recipe.ingredients().each() do |ingredient| %>
+      <li><a href="/ingredients/<%= ingredient.id() %>"><%= ingredient.name() %></a></li>
+    <% end %>
+  </ul>
 
-<div class="tags">
-  <h3>Tags:</h3>
-  <% if @recipe.tags().any?() %>
-    <ul>
-      <% @recipe.tags().each() do |tag| %>
-        <li><a href="/tags/<%= tag.id() %>"><%= tag.category() %></a></li>
-      <% end %>
-    </ul>
-  <% end %>
-</div>
+  <h3>Instructions:</h3>
+  <%= @recipe.instructions() %>
 
-<h3>Add Tags</h3>
-<% if @tags.any?() %>
-  <form action="/recipes/<%= @recipe.id() %>/tag" method="post">
-    <input id="recipe_id" name="recipe_id" type="hidden" value="<%= @recipe.id() %>">
-    <label for="tag_id">Select a Tag</label>
-      <select id='tag_id' name='tag_id' type='text'>
-        <% @tags.each() do |tag| %>
-          <option value="<%= tag.id()%>"> <%= tag.category() %></option>
+  <div class="tags">
+    <h3>Tags:</h3>
+    <% if @recipe.tags().any?() %>
+      <ul>
+        <% @recipe.tags().each() do |tag| %>
+          <li><a href="/tags/<%= tag.id() %>"><%= tag.category() %></a></li>
         <% end %>
-      </select>
+      </ul>
+    <% end %>
+  </div>
+
+  <h3>Add Tags</h3>
+  <% if @tags.any?() %>
+    <form action="/recipes/<%= @recipe.id() %>/tag" method="post">
+      <input id="recipe_id" name="recipe_id" type="hidden" value="<%= @recipe.id() %>">
+      <label for="tag_id">Select a Tag</label>
+        <select id='tag_id' name='tag_id' type='text'>
+          <% @tags.each() do |tag| %>
+            <option value="<%= tag.id()%>"> <%= tag.category() %></option>
+          <% end %>
+        </select>
+      <button type="submit">Add Tag</button>
+    </form>
+  <% end %>
+
+  <form action="/recipes/<%= @recipe.id() %>/tag/new" method="post">
+    <label for="category">Tag category</label>
+    <input id="category" name="category" type="text">
     <button type="submit">Add Tag</button>
   </form>
-<% end %>
 
-<form action="/recipes/<%= @recipe.id() %>/tag/new" method="post">
-  <label for="category">Tag category</label>
-  <input id="category" name="category" type="text">
-  <button type="submit">Add Tag</button>
-</form>
+  <h3>Rate this recipe:</h3>
+  <form action="/recipes/<%= @recipe.id() %>/rate" method="post">
+    <div class="radio-inline">
+      <label><input type="radio" name="rating" value=1>1</label>
+    </div>
+    <div class="radio-inline">
+      <label><input type="radio" name="rating" value=2>2</label>
+    </div>
+    <div class="radio-inline">
+      <label><input type="radio" name="rating" value=3>3</label>
+    </div>
+    <div class="radio-inline">
+      <label><input type="radio" name="rating" value=4>4</label>
+    </div>
+    <div class="radio-inline">
+      <label><input type="radio" name="rating" value=5>5</label>
+    </div>
+    <br>
+    <button type="submit">Submit</button>
+  </form>
 
-<h3>Rate this recipe:</h3>
-<form action="/recipes/<%= @recipe.id() %>/rate" method="post">
-  <div class="radio-inline">
-    <label><input type="radio" name="rating" value=1>1</label>
-  </div>
-  <div class="radio-inline">
-    <label><input type="radio" name="rating" value=2>2</label>
-  </div>
-  <div class="radio-inline">
-    <label><input type="radio" name="rating" value=3>3</label>
-  </div>
-  <div class="radio-inline">
-    <label><input type="radio" name="rating" value=4>4</label>
-  </div>
-  <div class="radio-inline">
-    <label><input type="radio" name="rating" value=5>5</label>
-  </div>
-  <br>
-  <button type="submit">Submit</button>
-</form>
+  <h3>Update <%=@recipe.name() %> </h3>
+  <form action="/recipes/<%= @recipe.id() %>" method="post">
+    <input name="_method" type="hidden" value="patch">
+    <label for="new_name">New Name:</label>
+    <input id="new_name" name="new_name" type="text">
+    <button type="submit">Update</button>
+  </form>
 
-<h3>Update <%=@recipe.name() %> </h3>
-<form action="/recipes/<%= @recipe.id() %>" method="post">
-  <input name="_method" type="hidden" value="patch">
-  <label for="new_name">New Name:</label>
-  <input id="new_name" name="new_name" type="text">
-  <button type="submit">Update</button>
-</form>
-
-<h3>Delete <%= @recipe.name() %></h3>
-<form action="/recipes/<%= @recipe.id() %>" method="post">
-  <input name="_method" type="hidden" value="delete">
-  <button type="submit">Delete</button>
-</form>
-
-<a href="/">Return Home</a>
+  <h3>Delete <%= @recipe.name() %></h3>
+  <form action="/recipes/<%= @recipe.id() %>" method="post">
+    <input name="_method" type="hidden" value="delete">
+    <button type="submit">Delete</button>
+  </form>
+  
+  <hr>
+  <span class="navigation"><a href="/">return home</a></span>
+</div>

@@ -1,19 +1,21 @@
-<h1>Tags</h1>
+<div class="main">
+  <h1>Tags</h1>
 
-<% if @tags.any?() %>
-  <ul>
-    <% @tags.each() do |tag| %>
-      <li><a href="/tags/<%= tag.id() %>"><%= tag.category() %></a></li>
-    <% end %>
-  </ul>
-<% else %>
-  <p>We have no tags :(<p>
-<% end %>
+  <% if @tags.any?() %>
+    <ul>
+      <% @tags.each() do |tag| %>
+        <li><a href="/tags/<%= tag.id() %>"><%= tag.category() %></a></li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p>We have no tags :(<p>
+  <% end %>
 
-<form action="/tags/new" method="post">
-  <label for="category">Tag category</label>
-  <input id="category" name="category" type="text">
-  <button type="submit">Add Tag</button>
-</form>
-
-<a href="/">Return Home</a>
+  <form action="/tags/new" method="post">
+    <label for="category">Tag category</label>
+    <input id="category" name="category" type="text">
+    <button type="submit">Add Tag</button>
+  </form>
+  <hr>
+  <span class="navigation"><a href="/">return home</a></span>
+</div>

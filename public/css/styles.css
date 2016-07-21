@@ -29,3 +29,20 @@ li {
 .tags li {
   display: inline;
 }
+
+.main {
+  float: right;
+  padding-right: 2%;
+  padding-bottom: 2%;
+  background: rgba(255, 255, 255, 0.7);
+  width: 30%;
+  border-radius: 1%;
+}
+
+.navigation {
+  font-size: 1.25em;
+}
+
+.main-nav {
+  font-size: 1.25em;
+}
