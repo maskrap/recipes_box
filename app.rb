@@ -123,7 +123,6 @@ get '/ingredients' do
 end
 
 get '/ingredients/:id' do
-  @ingredients = Ingredient.all
   @ingredient = Ingredient.find(params["id"].to_i)
   @recipes = Recipe.all
   erb :ingredient
@@ -142,6 +141,5 @@ patch '/ingredients/:id' do
   @ingredient = Ingredient.find(params["id"].to_i)
   name = params['new_name']
   @ingredient.update({name: name})
-  @recipes = Recipe.all
   erb :ingredient
 end
