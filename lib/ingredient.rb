@@ -1,7 +1,7 @@
-class Recipe < ActiveRecord::Base
-  has_and_belongs_to_many(:tags)
-  has_and_belongs_to_many(:ingredients)
+class Ingredient < ActiveRecord::Base
+  has_and_belongs_to_many(:recipes)
   validates(:name, :presence => true)
+  validates(:name, :length => { :minimum => 2 })
   before_save(:titleize_name)
 
 private

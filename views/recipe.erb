@@ -6,8 +6,8 @@
 
 <h3>Ingredients:</h3>
 <ul>
-  <% @recipe.ingredients().split(", ").each() do |ingredient| %>
-    <li><%= ingredient %></li>
+  <% @recipe.ingredients().each() do |ingredient| %>
+    <li><%= ingredient.name() %></li>
   <% end %>
 </ul>
 

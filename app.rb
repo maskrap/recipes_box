@@ -25,15 +25,21 @@ end
 
 post('/recipes/new') do
   name = params.fetch("name")
-  ingredients = params.fetch("ingredients")
+  ingredients = params.fetch("ingredients").split(", ")
   instructions = params.fetch("instructions")
-  recipe = Recipe.create({:name => name, :ingredients => ingredients, :instructions => instructions})
+  @recipe = Recipe.create({:name => name, :instructions => instructions})
+  ingredients.each() do |ingredient|
+    new_ingredient = Ingredient.create({:name => ingredient})
+    @recipe.ingredients.push(new_ingredient)
+  end
+  @ingredients = Ingredient.all()
   redirect('/recipes')
 end
 
 get('/recipes/:id') do
   @recipe = Recipe.find(params.fetch("id").to_i())
   @tags = Tag.all()
+  @ingredients = Ingredient.all()
   erb(:recipe)
 end
 
@@ -49,6 +55,7 @@ post('/recipes/:id/tag') do
   tag = Tag.find(tag_id)
   @recipe = Recipe.find(recipe_id)
   @recipe.tags.push(tag)
+  @ingredients = Ingredient.all()
   redirect("/recipes/#{@recipe.id()}")
 end
 
@@ -57,6 +64,7 @@ post('/recipes/:id/tag/new') do
   category = params.fetch("category")
   tag = Tag.create(:category => category)
   @recipe.tags.push(tag)
+  @ingredients = Ingredient.all()
   redirect("/recipes/#{@recipe.id()}")
 end
 
@@ -87,6 +95,7 @@ patch('/recipes/:id') do
   name = params.fetch('new_name')
   @recipe.update({:name => name})
   @tags = Tag.all()
+  @ingredients = Ingredient.all()
   erb(:recipe)
 end
 
@@ -103,6 +112,7 @@ post('/recipes/:id/rate') do
   rating = params.fetch("rating").to_i()
   @recipe.update({:rating => rating})
   @tags = Tag.all()
+  @ingredients = Ingredient.all()
   redirect("/recipes/#{@recipe.id()}")
 end
 
