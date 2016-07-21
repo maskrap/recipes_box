@@ -2,8 +2,8 @@
 
 <% if @recipes.any?() %>
   <ul>
-  <% @recipes.each() do |recipe| %>
-    <li><a href="/recipes/<%= recipe.id() %>"><%= recipe.name() %></a></li>
+    <% @recipes.each() do |recipe| %>
+      <li><a href="/recipes/<%= recipe.id() %>"><%= recipe.name() %></a></li>
     <% end %>
   </ul>
 <% else %>
@@ -22,6 +22,5 @@
   <br>
   <button type="submit">Add Recipe</button>
 </form>
-
 
 <a href="/">Return Home</a>
