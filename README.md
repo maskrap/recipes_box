@@ -28,7 +28,6 @@ See spec folder
 
 ## Setup/Installation Requirements
 
-#### Option #1
 #### Setup instructions
 * Clone this repository
 * Navigate into file
@@ -38,10 +37,6 @@ See spec folder
   * rake db:migrate
 * Open in Sinatra
 * Navigate to localhost:4567
-
-
-#### Option #2
-* Click on heroku link: https://sleepy-falls-63353.herokuapp.com/
 
 ## Known Bugs
 * None

@@ -1,24 +1,24 @@
 <div class="main">
-  <h3>Recipes for <%= @ingredient.name() %>:</h3>
+  <h3>Recipes for <%= @ingredient.name %>:</h3>
 
-  <% if @ingredient.recipes().any?() %>
+  <% if @ingredient.recipes.any? %>
     <ul>
-      <% @ingredient.recipes().each() do |recipe| %>
+      <% @ingredient.recipes.each { |recipe| %>
         <li><a href="/recipes/<%= recipe.id() %>"><%= recipe.name() %></a></li>
-      <% end %>
+      <% } %>
     </ul>
   <% end %>
 
-  <h3>Update <%=@ingredient.name() %> </h3>
-  <form action="/ingredients/<%= @ingredient.id() %>" method="post">
+  <h3>Update <%=@ingredient.name %> </h3>
+  <form action="/ingredients/<%= @ingredient.id %>" method="post">
     <input name="_method" type="hidden" value="patch">
     <label for="new_name">New Name:</label>
     <input id="new_name" name="new_name" type="text">
     <button type="submit">Update</button>
   </form>
 
-  <h3>Delete <%= @ingredient.name() %></h3>
-  <form action="/ingredients/<%= @ingredient.id() %>" method="post">
+  <h3>Delete <%= @ingredient.name %></h3>
+  <form action="/ingredients/<%= @ingredient.id %>" method="post">
     <input name="_method" type="hidden" value="delete">
     <button type="submit">Delete Ingredient</button>
   </form>

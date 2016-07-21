@@ -1,14 +1,14 @@
 <div class="main">
   <h1>Tags</h1>
 
-  <% if @tags.any?() %>
+  <% if @tags.any? %>
     <ul>
-      <% @tags.each() do |tag| %>
-        <li><a href="/tags/<%= tag.id() %>"><%= tag.category() %></a></li>
-      <% end %>
+      <% @tags.each { |tag| %>
+        <li><a href="/tags/<%= tag.id %>"><%= tag.category %></a></li>
+      <% } %>
     </ul>
   <% else %>
-    <p>We have no tags :(<p>
+    <p>There are currently no tags<p>
   <% end %>
 
   <form action="/tags/new" method="post">

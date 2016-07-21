@@ -1,14 +1,14 @@
 <div class="main">
   <h1>Recipes</h1>
 
-  <% if @recipes.any?() %>
+  <% if @recipes.any? %>
     <ul>
-      <% @recipes.each() do |recipe| %>
-        <li><a href="/recipes/<%= recipe.id() %>"><%= recipe.name() %></a></li>
-      <% end %>
+      <% @recipes.each { |recipe| %>
+        <li><a href="/recipes/<%= recipe.id %>"><%= recipe.name %></a></li>
+      <% } %>
     </ul>
   <% else %>
-    <p>We have no recipes :(<p>
+    <p>There are currently no recipes<p>
   <% end %>
 
   <form action="/recipes/new" method="post">
@@ -23,7 +23,7 @@
     <br>
     <button type="submit">Add Recipe</button>
   </form>
-  
+
   <hr>
   <span class="navigation"><a href="/">return home</a></span>
 </div>

@@ -1,14 +1,13 @@
 <div class="main">
   <h1>Highest Rated Recipes</h1>
+  <% @recipes.each { |recipe| %>
+    <ul>
+      <% if recipe.rating==5 %>
+      <li><a href="/recipes/<%= recipe.id %>"><%= recipe.name %></a></li>
+      <% end %>
+    </ul>
+  <% } %>
 
-
-    <% @recipes.each() do |recipe| %>
-      <ul>
-        <% if recipe.rating==5 %>
-        <li><a href="/recipes/<%= recipe.id() %>"><%= recipe.name() %></a></li>
-    <% end %>
-      </ul>
-    <% end %>
   <hr>
   <span class="navigation"><a href="/">return home</a></span>
 </div>
